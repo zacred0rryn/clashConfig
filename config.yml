@@ -1,0 +1,755 @@
+# Paste your clash subscription link at column 200
+
+mixed-port: 7890
+redir-port: 7892
+allow-lan: false
+mode: Rule
+log-level: info
+external-controller: 0.0.0.0:9090
+secret: ""
+clash-for-android:
+  append-system-dns: false
+profile:
+  tracing: true
+  store-selected: true
+  store-fake-ip: true
+
+hosts:
+  'services.googleapis.cn': 142.250.196.131
+  'www.google.cn': 142.250.196.131
+  'upos-sz-mirrorcosov.bilivideo.com': 203.205.136.246
+  # 'upos-hz-mirrorakam.akamaized.net': 23.33.32.8
+  'upos-hz-mirrorakam.akamaized.net': 23.50.9.137
+
+dns:
+  enable: true
+  ipv6: true
+  listen: ":53"
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16  # Fake IP addresses pool CIDR
+  use-hosts: true  # lookup hosts and return IP record
+  default-nameserver:
+    # - 119.29.29.29
+    - 8.8.4.4
+    - 223.5.5.5
+  nameserver:
+    - 114.114.114.114
+    # - tls://223.5.5.5:853
+    - tls://1.12.12.12
+    - tls://dns.rubyfish.cn:853
+    - tls://doh.pub:853
+    - https://doh.pub/dns-query
+    - https://[2400:3200::1]/dns-query
+  fallback:  # 提供 fallback 时，如果GEOIP非 CN 中国时使用 fallback 解析
+    # - tls://8.8.8.8:853  # Google DNS over TLS 50ms
+    - tls://8.8.4.4:853  # cloudflare DNS over TLS 50ms
+    - https://1.0.0.1/dns-query
+    # - https://1.1.1.1/dns-query  # cloudflare DNS over HTTPS
+    # - https://dns.google/dns-query  # Google DNS over HTTPS
+    - https://public.dns.iij.jp/dns-query
+    - https://[2001:4860:4860::64]/dns-query
+    - https://[2606:4700:4700::1111]/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:  # 被考虑为被污染的地址
+      - 0.0.0.0/8
+      - 10.0.0.0/8
+      - 100.64.0.0/10
+      - 127.0.0.0/8
+      - 169.254.0.0/16
+      - 172.16.0.0/12
+      - 192.0.0.0/24
+      - 192.0.2.0/24
+      - 192.88.99.0/24
+      - 192.168.0.0/16
+      - 198.18.0.0/15
+      - 198.51.100.0/24
+      - 203.0.113.0/24
+      - 224.0.0.0/4
+      - 240.0.0.0/4
+      - 255.255.255.255/32
+    domain:
+      - +.facebook.com
+      - +.twitter.com
+      - +.google.com
+      - +.googleapis.com
+      - +.google.cn
+      - +.googleapis.cn
+      - +.xn--ngstr-lra8j.com
+      - +.googlevideo.com
+      - +.gvt1.com
+      - +.gmail.com
+      - +.youtube.com
+      - +.youtu.be
+      - +.gvt0.com
+      - +.gvt2.com
+      - +.gvt3.com
+      - +.gstatic.com
+      - +.265.com
+      - +.2mdn.net
+      - +.app-measurement.com
+      - +.c.admob.com
+      - +.clickserve.dartsearch.net
+      - +.crl.pki.goog
+      - +.doubleclick.net
+      - +.firebase-settings.crashlytics.com
+      - +.google-analytics.com
+      - +.googleadservices.com
+      - +.googleanalytics.com
+      - +.googleoptimize.com
+      - +.googlesyndication.com
+      - +.googletagmanager.com
+      - +.googletagservices.com
+  fake-ip-filter:
+    - '*.lan'
+    - '*.localdomain'
+    - '*.example'
+    - '*.invalid'
+    - '*.localhost'
+    - '*.test'
+    - '*.local'
+    - '*.home.arpa'
+    - 'time.*.com'
+    - 'time.*.gov'
+    - 'time.*.edu.cn'
+    - 'time.*.apple.com'
+    - 'time1.*.com'
+    - 'time2.*.com'
+    - 'time3.*.com'
+    - 'time4.*.com'
+    - 'time5.*.com'
+    - 'time6.*.com'
+    - 'time7.*.com'
+    - 'ntp.*.com'
+    - 'ntp1.*.com'
+    - 'ntp2.*.com'
+    - 'ntp3.*.com'
+    - 'ntp4.*.com'
+    - 'ntp5.*.com'
+    - 'ntp6.*.com'
+    - 'ntp7.*.com'
+    - '*.time.edu.cn'
+    - '*.ntp.org.cn'
+    - '+.pool.ntp.org'
+    - 'time1.cloud.tencent.com'
+    - 'music.163.com'
+    - '*.music.163.com'
+    - '*.126.net'
+    - 'musicapi.taihe.com'
+    - 'music.taihe.com'
+    - 'songsearch.kugou.com'
+    - 'trackercdn.kugou.com'
+    - '*.kuwo.cn'
+    - 'api-jooxtt.sanook.com'
+    - 'api.joox.com'
+    - 'joox.com'
+    - 'y.qq.com'
+    - '*.y.qq.com'
+    - 'streamoc.music.tc.qq.com'
+    - 'mobileoc.music.tc.qq.com'
+    - 'isure.stream.qqmusic.qq.com'
+    - 'dl.stream.qqmusic.qq.com'
+    - 'aqqmusic.tc.qq.com'
+    - 'amobile.music.tc.qq.com'
+    - '*.xiami.com'
+    - '*.music.migu.cn'
+    - 'music.migu.cn'
+    - '*.msftconnecttest.com'
+    - '*.msftncsi.com'
+    - 'msftconnecttest.com'
+    - 'msftncsi.com'
+    - 'localhost.ptlogin2.qq.com'
+    - 'localhost.sec.qq.com'
+    - '+.srv.nintendo.net'
+    - '+.stun.playstation.net'
+    - 'xbox.*.microsoft.com'
+    - 'xnotify.xboxlive.com'
+    - '+.battlenet.com.cn'
+    - '+.wotgame.cn'
+    - '+.wggames.cn'
+    - '+.wowsgame.cn'
+    - '+.wargaming.net'
+    - 'proxy.golang.org'
+    - 'stun.*.*'
+    - 'stun.*.*.*'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.stun.*.*.*.*'
+    - 'heartbeat.belkin.com'
+    - '*.linksys.com'
+    - '*.linksyssmartwifi.com'
+    - '*.router.asus.com'
+    - 'mesu.apple.com'
+    - 'swscan.apple.com'
+    - 'swquery.apple.com'
+    - 'swdownload.apple.com'
+    - 'swcdn.apple.com'
+    - 'swdist.apple.com'
+    - 'lens.l.google.com'
+    - 'stun.l.google.com'
+    - '+.nflxvideo.net'
+    - '*.square-enix.com'
+    - '*.finalfantasyxiv.com'
+    - '*.ffxiv.com'
+    - '*.mcdn.bilivideo.cn'
+
+proxy-provider-common: &ppCmn
+  type: http
+  path: ./proxies/Proxies.yaml
+  url: # Paste url here
+  interval: 7200
+  health-check:
+    enable: true
+    interval: 180
+    url: "http://cp.cloudflare.com/generate_204"
+
+proxy-providers:
+  0.Proxies:
+    <<: *ppCmn
+  1.HK:
+    <<: *ppCmn
+    filter: 港|HK|Hong Kong # |🇭🇰
+  2.TW:
+    <<: *ppCmn
+    filter: 台|TW|Tai Wan|Taiwan # |🇹🇼|🇨🇳
+  3.JK:
+    <<: *ppCmn
+    filter: 日|东京|韩|首尔|JP|Japan|Kor|Seo # |🇯🇵|🇰🇷
+  4.NA:
+    <<: *ppCmn
+    filter: 美|加州|洛|圣荷西|波特兰|加|US|States|Ame|Can # |🇺🇸|🇺🇲|🇨🇦
+  5.SG:
+    <<: *ppCmn
+    filter: 新|狮城|SG|Singapore #|🇸🇬
+  6.EU:
+    <<: *ppCmn
+    filter: 德|法兰克福|西班牙|法|巴黎|英|伦|爱尔兰|意|荷兰|土|UK|Kingdom|Eng|London|Ire|Fra|Paris|Ger|Spa|Neth|Ita|Tur # |🇩🇪|🇪🇸|🇫🇷|🇬🇧|🇮🇹|🇳🇱|🇹🇷
+  7.Other:
+    <<: *ppCmn
+    filter: 阿|澳|巴西|智|以|印|菲|泰|非|Arg|Aus|Bras|Chil|Isr|Ind|Phi|Thai|Afr|Dub|Joh # |🇦🇪|🇦🇷|🇦🇺|🇧🇷|🇨🇱|🇮🇱|🇮🇳|🇵🇭|🇹🇭|🇿🇦
+  # 8.Native:
+  #   <<: *ppCmn
+  #   filter: 原生
+  # 9-1.NF:
+  #   <<: *ppCmn
+  #   filter: NF|奈飞|Netflix
+  # 9-2.Disney:
+  #   <<: *ppCmn
+  #   filter: Disney|迪士尼
+
+rule-provider-common: &rpCmn
+  type: http
+  behavior: domain
+  interval: 86400
+
+rule-providers:
+  PublicDNS:
+    <<: *rpCmn
+    behavior: ipcidr
+    url: https://rules.kr328.app/public-dns.yaml
+    path: ./ruleset/publicDNS.yaml
+  PublicDNSDomain:
+    <<: *rpCmn
+    behavior: domain
+    url: https://rules.kr328.app/public-dns-domain.yaml
+    path: ./ruleset/publicDNSDomain.yaml
+  adBlock:
+    <<: *rpCmn
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Advertising/Advertising_Domain.yaml
+    path: ./ruleset/adbDomain.yaml
+  ipAttributionProxy:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/lwd-temp/anti-ip-attribution@main/generated/rule-provider-proxy.yaml
+    path: ./ruleset/ipattributionP.yaml
+  ipAttributionDirect:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/lwd-temp/anti-ip-attribution@main/generated/rule-provider-direct.yaml
+    path: ./ruleset/ipattributionD.yaml
+  ipAttributionReject:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/lwd-temp/anti-ip-attribution@main/generated/rule-provider-reject.yaml
+    path: ./ruleset/ipattributionR.yaml
+  Reject:
+    <<: *rpCmn
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
+    path: ./ruleset/reject.yaml
+  iCloud:
+    <<: *rpCmn
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt
+    path: ./ruleset/icloud.yaml
+  Apple:
+    <<: *rpCmn
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt
+    path: ./ruleset/apple.yaml
+  Google:
+    <<: *rpCmn
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt
+    path: ./ruleset/google.yaml
+  Proxy:
+    <<: *rpCmn
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
+    path: ./ruleset/proxy.yaml
+  Direct:
+    <<: *rpCmn
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt
+    path: ./ruleset/direct.yaml
+  Private:
+    <<: *rpCmn
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt
+    path: ./ruleset/private.yaml
+  GFW:
+    <<: *rpCmn
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt
+    path: ./ruleset/gfw.yaml
+  greatFire:
+    <<: *rpCmn
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/greatfire.txt
+    path: ./ruleset/greatfire.yaml
+  tld-not-cn:
+    <<: *rpCmn
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt
+    path: ./ruleset/tld-not-cn.yaml
+  telegramCIDR:
+    <<: *rpCmn
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt
+    path: ./ruleset/telegramcidr.yaml
+  cnCIDR:
+    <<: *rpCmn
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt
+    path: ./ruleset/cncidr.yaml
+  lanCIDR:
+    <<: *rpCmn
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
+    path: ./ruleset/lancidr.yaml
+  Applications:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt
+    path: ./ruleset/applications.yaml
+  Bahamut:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Bahamut/Bahamut.yaml
+    path: ./ruleset/bahamut.yaml
+  Bilibili:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BiliBili/BiliBili.yaml
+    path: ./ruleset/bilibili.yaml
+  BilibiliIntl:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BiliBiliIntl/BiliBiliIntl.yaml
+    path: ./ruleset/bilibiliIntl.yaml
+  Disney:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Disney/Disney.yaml
+    path: ./ruleset/Disney.yaml
+  Netflix:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Netflix/Netflix.yaml
+    path: ./ruleset/Netflix.yaml
+  TikTok:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/TikTok/TikTok.yaml
+    path: ./ruleset/TikTok.yaml
+  YouTube:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTube/YouTube.yaml
+    path: ./ruleset/YouTube.yaml
+  Spotify:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Spotify/Spotify.yaml
+    path: ./ruleset/Spotify.yaml
+  Emby:
+    <<: *rpCmn
+    behavior: classical
+    url: https://raw.fastgit.org/justdoiting/emby-rules/main/Emby.yaml
+    path: ./ruleset/Emby.yaml
+  Pixiv:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Pixiv/Pixiv.yaml
+    path: ./ruleset/pixiv.yaml
+  EHGallery:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/EHGallery/EHGallery.yaml
+    path: ./ruleset/ehGallery.yaml
+  SteamCN:
+    <<: *rpCmn
+    url: https://rules.kr328.app/steam@cn.yaml
+    path: ./ruleset/steamCN.yaml
+
+script:
+  shortcuts:
+    QUIC: "network == 'udp' and dst_port == 443"
+    BilibiliP2P: "network == 'udp' and match_provider('Bilibili')"
+
+group-select-common: &gsCmn
+  type: select
+  proxies:
+    - 🚀 全局设置
+    - ♻️ 自动选择
+    - 🇭🇰 香港节点
+    - 🇹🇼 台湾节点
+    - 🇯🇵 日韩节点
+    - 🇺🇸 北美节点
+    - 🇸🇬 新加坡节点
+    - 🇮🇪 欧洲节点
+    - 🇷🇪 其他区域
+    - 🚀 手动选择
+    - DIRECT
+
+group-auto-common: &gaCmn
+  type: url-test
+  url: http://cp.cloudflare.com/generate_204
+  interval: 180
+
+proxy-groups:
+  - name: 🚩 IP属地
+    <<: *gsCmn
+
+  - name: 🚀 全局设置
+    type: select
+    proxies:
+      - ♻️ 自动选择
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日韩节点
+      - 🇺🇸 北美节点
+      - 🇸🇬 新加坡节点
+      - 🇮🇪 欧洲节点
+      - 🇷🇪 其他区域
+      - 🚀 手动选择
+      - DIRECT
+
+  - name: 🚀 手动选择
+    type: select
+    use:
+      - 0.Proxies
+
+  - name: 🎯 国内网络
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 全局设置
+      - ♻️ 自动选择
+      - 🚀 手动选择
+
+  - name: 📹 Youtube
+    <<: *gsCmn
+
+  - name: 🎥 Netflix
+    type: select
+    proxies:
+      - 🎥 奈飞节点
+      - 🌏 原生节点
+      - 🚀 全局设置
+      - ♻️ 自动选择
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日韩节点
+      - 🇺🇸 北美节点
+      - 🇸🇬 新加坡节点
+      - 🇮🇪 欧洲节点
+      - 🇷🇪 其他区域
+      - 🚀 手动选择
+      - DIRECT
+
+  - name: 🎥 Disney
+    type: select
+    proxies:
+      - 🎥 迪士尼节点
+      - 🌏 原生节点
+      - 🚀 全局设置
+      - ♻️ 自动选择
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日韩节点
+      - 🇺🇸 北美节点
+      - 🇸🇬 新加坡节点
+      - 🇮🇪 欧洲节点
+      - 🇷🇪 其他区域
+      - 🚀 手动选择
+      - DIRECT
+
+  - name: 📺 巴哈姆特
+    type: select
+    proxies:
+      - 🇹🇼 台湾节点
+      - 🚀 全局设置
+      - 🚀 手动选择
+      - DIRECT
+
+  - name: 🎵 音乐流媒体
+    <<: *gsCmn
+
+  - name: 🌍 国外媒体
+    type: select
+    proxies:
+      - 🌏 原生节点
+      - 🚀 全局设置
+      - ♻️ 自动选择
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日韩节点
+      - 🇺🇸 北美节点
+      - 🇸🇬 新加坡节点
+      - 🇮🇪 欧洲节点
+      - 🇷🇪 其他区域
+      - 🚀 手动选择
+      - DIRECT
+
+  - name: 🌏 国内媒体
+    type: select
+    proxies:
+      - DIRECT
+      - 🌏 原生节点
+      - 🚀 全局设置
+      - ♻️ 自动选择
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日韩节点
+      - 🇺🇸 北美节点
+      - 🇸🇬 新加坡节点
+      - 🇮🇪 欧洲节点
+      - 🇷🇪 其他区域
+      - 🚀 手动选择
+
+  - name: 🌏 出海媒体
+    type: select
+    proxies:
+      - DIRECT
+      - 🌏 原生节点
+      - 🚀 全局设置
+      - ♻️ 自动选择
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日韩节点
+      - 🇺🇸 北美节点
+      - 🇸🇬 新加坡节点
+      - 🇮🇪 欧洲节点
+      - 🇷🇪 其他区域
+      - 🚀 手动选择
+
+  - name: 📲 Telegram
+    <<: *gsCmn
+
+  - name: 📢 谷歌FCM
+    <<: *gsCmn
+
+  - name: Ⓜ️ 微软云盘
+    <<: *gsCmn
+
+  - name: 🍎 苹果服务
+    <<: *gsCmn
+
+  - name: 🚫 请求拦截
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+      - 🚀 全局设置
+
+  - name: 🐟 其他网站
+    <<: *gsCmn
+
+  - name: --------------------------------
+    type: select
+    proxies:
+      - REJECT
+
+  - name: 🇭🇰 香港节点
+    type: select
+    use:
+      - 1.HK
+    proxies:
+      - ♻️ 香港自动
+      - DIRECT
+
+  - name: 🇹🇼 台湾节点
+    type: select
+    use:
+      - 2.TW
+    proxies:
+      - ♻️ 台湾自动
+      - DIRECT
+
+  - name: 🇯🇵 日韩节点
+    type: select
+    use:
+      - 3.JK
+    proxies:
+      - ♻️ 日韩自动
+      - DIRECT
+
+  - name: 🇺🇸 北美节点
+    type: select
+    use:
+      - 4.NA
+    proxies:
+      - ♻️ 北美自动
+      - DIRECT
+
+  - name: 🇸🇬 新加坡节点
+    type: select
+    use:
+      - 5.SG
+    proxies:
+      - ♻️ 新加坡自动
+      - DIRECT
+
+  - name: 🇮🇪 欧洲节点
+    type: select
+    use: 
+      - 6.EU
+    proxies:
+      - ♻️ 欧洲自动
+      - DIRECT
+
+  - name: 🇷🇪 其他区域
+    type: select
+    use: 
+      - 7.Other
+    proxies:
+      - ♻️ 其他自动
+      - DIRECT
+
+  - name: 🌏 原生节点
+    type: select
+    # use:
+    #   - 8.Native
+    proxies:
+      - DIRECT
+
+  - name: 🎥 奈飞节点
+    type: select
+    # use:
+    #   - 9-1.NF
+    proxies:
+      - DIRECT
+
+  - name: 🎥 迪士尼节点
+    type: select
+    # use:
+    #   - 9-2.Disney
+    proxies:
+      - DIRECT
+
+  - name: ♻️ 自动选择
+    <<: *gaCmn
+    use:
+      - 0.Proxies
+
+  - name: ♻️ 香港自动
+    <<: *gaCmn
+    use:
+      - 1.HK
+
+  - name: ♻️ 台湾自动
+    <<: *gaCmn
+    use:
+      - 2.TW
+
+  - name: ♻️ 日韩自动
+    <<: *gaCmn
+    use:
+      - 3.JK
+
+  - name: ♻️ 北美自动
+    <<: *gaCmn
+    interval: 90
+    use:
+      - 4.NA
+
+  - name: ♻️ 新加坡自动
+    <<: *gaCmn
+    use:
+      - 5.SG
+
+  - name: ♻️ 欧洲自动
+    <<: *gaCmn
+    use: 
+      - 6.EU
+
+  - name: ♻️ 其他自动
+    <<: *gaCmn
+    use: 
+      - 7.Other
+
+rules:
+  - RULE-SET,PublicDNS,REJECT,no-resolve
+  - RULE-SET,PublicDNSDomain,REJECT,no-resolve
+  - SCRIPT,QUIC,REJECT,no-resolve
+  - SCRIPT,BilibiliP2P,REJECT,no-resolve
+  - DOMAIN,clash.razord.top,DIRECT
+  - DOMAIN,yacd.haishan.me,DIRECT
+  - RULE-SET,Applications,DIRECT
+  - RULE-SET,Private,DIRECT
+  - RULE-SET,Reject,REJECT
+  - DOMAIN-SUFFIX,qlogo.cn,🎯 国内网络
+  - RULE-SET,adBlock,🚫 请求拦截
+  - DOMAIN,canyouseeme.org,🎯 国内网络
+  - PROCESS-NAME,uu.exe,DIRECT
+  - RULE-SET,SteamCN,🎯 国内网络
+  - PROCESS-NAME,eu.kanade.tachiyomi.extension.zh.copymanga,🎯 国内网络
+  - DOMAIN,builds.parsecgaming.com,🚀 全局设置
+  - DOMAIN,parsecusercontent.com,🚀 全局设置
+  - DOMAIN-SUFFIX,parsec.app,🚀 全局设置
+  - PROCESS-NAME,parsecd.exe,DIRECT
+  - DOMAIN,hanime1.me,DIRECT
+  - RULE-SET,EHGallery,🇺🇸 北美节点
+  - RULE-SET,Pixiv,🇯🇵 日韩节点
+  - RULE-SET,BilibiliIntl,🇷🇪 其他区域
+  - RULE-SET,ipAttributionReject,🚫 请求拦截
+  - RULE-SET,ipAttributionDirect,🎯 国内网络
+  - RULE-SET,ipAttributionProxy,🚩 IP属地
+  - RULE-SET,Bilibili,🌏 国内媒体
+  - IP-CIDR,23.50.9.0/24,🌏 国内媒体
+  - IP-CIDR,23.33.32.0/23,🌏 国内媒体
+  - IP-CIDR,203.205.136.0/23,🌏 国内媒体
+  # - IP-CIDR,61.111.0.0/18,🌏 国内媒体
+  # - IP-CIDR,101.33.17.0/24,🌏 国内媒体
+  - RULE-SET,iCloud,🎯 国内网络
+  - RULE-SET,telegramCIDR,📲 Telegram
+  - RULE-SET,Bahamut,📺 巴哈姆特
+  - RULE-SET,Disney,🎥 Disney
+  - RULE-SET,Netflix,🎥 Netflix
+  - RULE-SET,TikTok,🌍 国外媒体
+  - RULE-SET,YouTube,📹 Youtube
+  - RULE-SET,Spotify,🎵 音乐流媒体
+  - DOMAIN-SUFFIX,jmsooo.com,🌏 出海媒体
+  - RULE-SET,Emby,🌏 出海媒体
+  - RULE-SET,Apple,🍎 苹果服务
+  - RULE-SET,Google,📢 谷歌FCM
+  - RULE-SET,Proxy,🚀 全局设置
+  - RULE-SET,Direct,🎯 国内网络
+  - RULE-SET,lanCIDR,DIRECT
+  - RULE-SET,cnCIDR,🎯 国内网络
+  - GEOIP,LAN,DIRECT
+  - GEOIP,CN,🎯 国内网络
+  - MATCH,🐟 其他网站
