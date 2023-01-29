@@ -348,7 +348,7 @@ rule-providers:
   AkamizedCDN:
     <<: *rpCmn
     behavior: ipcidr
-    url: https://raw.githubusercontent.com/ZippyRhys/clashConfig/main/providers/rule/akamCDN.yaml
+    url: https://fastly.jsdelivr.net/gh/ZippyRhys/clashConfig@main/providers/rule/akamCDN.yaml
     path: ./providers/rule/akamCDN.yaml
   Disney:
     <<: *rpCmn
