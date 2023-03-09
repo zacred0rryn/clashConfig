@@ -1,4 +1,4 @@
-# Paste your clash subscription link at row 198
+# Paste your clash subscription link at column 198
 mixed-port: 7890
 redir-port: 7892
 allow-lan: false
@@ -17,7 +17,7 @@ hosts:
   'services.googleapis.cn': 142.250.196.131
   'www.google.cn': 142.250.196.131
   'upos-sz-mirrorcosov.bilivideo.com': 203.205.136.246
-  'upos-hz-mirrorakam.akamaized.net': 23.2.16.35
+  'upos-hz-mirrorakam.akamaized.net': 23.33.33.192
 
 dns:
   enable: true
@@ -348,7 +348,7 @@ rule-providers:
   AkamizedCDN:
     <<: *rpCmn
     behavior: ipcidr
-    url: https://fastly.jsdelivr.net/gh/ZippyRhys/clashConfig@main/providers/rule/akamCDN.yaml
+    url: https://fastly.jsdelivr.net/gh/zacred0rryn/clashConfig@main/providers/rule/akamCDN.yaml
     path: ./providers/rule/akamCDN.yaml
   Disney:
     <<: *rpCmn
@@ -360,6 +360,11 @@ rule-providers:
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Netflix/Netflix.yaml
     path: ./providers/rule/Netflix.yaml
+  PikPak:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/PikPak/PikPak.yaml
+    path: ./providers/rule/PikPak.yaml
   TikTok:
     <<: *rpCmn
     behavior: classical
@@ -706,11 +711,11 @@ rules:
   - DOMAIN,yacd.haishan.me,DIRECT
   - RULE-SET,Applications,DIRECT
   - RULE-SET,Private,DIRECT
-  - RULE-SET,Reject,REJECT
   - DOMAIN-SUFFIX,qlogo.cn,🎯 国内网络
+  - RULE-SET,Reject,🚫 请求拦截
   - RULE-SET,adBlock,🚫 请求拦截
-  - DOMAIN,canyouseeme.org,🎯 国内网络
   - PROCESS-NAME,uu.exe,DIRECT
+  - DOMAIN,canyouseeme.org,🎯 国内网络
   - RULE-SET,SteamCN,🎯 国内网络
   - PROCESS-NAME,eu.kanade.tachiyomi,🚀 全局设置
   - DOMAIN,builds.parsecgaming.com,🚀 全局设置
@@ -728,6 +733,7 @@ rules:
   - RULE-SET,AkamizedCDN,🌏 国内媒体
   - IP-CIDR,203.205.136.0/23,🌏 国内媒体 # cosovCDN
   - RULE-SET,iCloud,🎯 国内网络
+  - RULE-SET,PikPak,📲 Telegram
   - RULE-SET,telegramCIDR,📲 Telegram
   - RULE-SET,Bahamut,📺 巴哈姆特
   - RULE-SET,Disney,🎥 Disney
