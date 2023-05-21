@@ -195,7 +195,7 @@ dns:
 proxy-provider-common: &ppCmn
   type: http
   path: ./providers/proxy/Proxies.yaml
-  url: # Paste url here
+  url: # Paste subscription link here
   interval: 7200
   health-check:
     enable: true
@@ -216,22 +216,22 @@ proxy-providers:
     filter: 日|东京|韩|首尔|JP|Japan|Kor|Seo # |🇯🇵|🇰🇷
   4.NA:
     <<: *ppCmn
-    filter: 美|加州|洛|圣荷西|波特兰|加|US|States|Ame|Can # |🇺🇸|🇺🇲|🇨🇦
+    filter: 美|加州|洛|圣荷西|波特兰|加拿大|U.S.|States|Ame|Can # |🇺🇸|🇺🇲|🇨🇦
   5.SG:
     <<: *ppCmn
     filter: 新|狮城|SG|Singapore #|🇸🇬
   6.EU:
     <<: *ppCmn
-    filter: 德|法兰克福|西班牙|法|巴黎|英|伦|爱尔兰|意|荷兰|土|UK|Kingdom|Eng|London|Ire|Fra|Paris|Ger|Spa|Neth|Ita|Tur # |🇩🇪|🇪🇸|🇫🇷|🇬🇧|🇮🇹|🇳🇱|🇹🇷
+    filter: 俄|德|法兰克福|西班牙|法|巴黎|英|伦|爱尔兰|意|荷兰|土|Rus|UK|Kingdom|Eng|London|Ire|Fra|Paris|Ger|Spa|Neth|Ita|Tur # |🇩🇪|🇪🇸|🇫🇷|🇬🇧|🇮🇹|🇳🇱|🇹🇷
   7.Other:
     <<: *ppCmn
-    filter: 阿|澳|巴西|智|以|印|菲|泰|非|马来|Arg|Aus|Bras|Chil|Isr|Ind|Phi|Thai|Afr|Dub|Joh|Mal # |🇦🇪|🇦🇷|🇦🇺|🇧🇷|🇨🇱|🇮🇱|🇮🇳|🇵🇭|🇹🇭|🇿🇦|🇲🇾
+    filter: 阿|澳|巴西|智|以|印|菲|泰|南非|马来|Arg|Aus|Bras|Chil|Isr|Ind|Phi|Thai|Afr|Dub|Joh|Mal # |🇦🇪|🇦🇷|🇦🇺|🇧🇷|🇨🇱|🇮🇱|🇮🇳|🇵🇭|🇹🇭|🇿🇦|🇲🇾
   # 8.Native:
   #   <<: *ppCmn
   #   filter: 原生
-  # 9-1.NF:
-  #   <<: *ppCmn
-  #   filter: NF|奈飞|Netflix
+  9-1.NF:
+    <<: *ppCmn
+    filter: NF|奈飞|Netflix
   # 9-2.Disney:
   #   <<: *ppCmn
   #   filter: Disney|迪士尼
@@ -649,8 +649,8 @@ proxy-groups:
 
   - name: 🎥 奈飞节点
     type: select
-    # use:
-    #   - 9-1.NF
+    use:
+      - 9-1.NF
     proxies:
       - DIRECT
 
@@ -722,6 +722,8 @@ rules:
   - DOMAIN,parsecusercontent.com,🚀 全局设置
   - DOMAIN-SUFFIX,parsec.app,🚀 全局设置
   - PROCESS-NAME,parsecd.exe,DIRECT
+  - IP-CIDR,4.240.0.0/12,DIRECT
+  # - PROCESS-NAME,ts3client_win64.exe,DIRECT
   - DOMAIN,hanime1.me,DIRECT
   - RULE-SET,EHGallery,🇺🇸 北美节点
   - RULE-SET,Pixiv,🇯🇵 日韩节点
