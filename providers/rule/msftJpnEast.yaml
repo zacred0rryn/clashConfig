@@ -1,0 +1,5 @@
+# Microsoft Azure Japan East
+payload:
+  - "4.240.0.0/12"
+  - "20.192.0.0/10"
+
