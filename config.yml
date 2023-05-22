@@ -350,6 +350,11 @@ rule-providers:
     behavior: ipcidr
     url: https://fastly.jsdelivr.net/gh/zacred0rryn/clashConfig@main/providers/rule/akamCDN.yaml
     path: ./providers/rule/akamCDN.yaml
+  MSFTJapanEast:
+    <<: *rpCmn
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/zacred0rryn/clashConfig@main/providers/rule/msftJpnEast.yaml
+    path: ./providers/rule/msftJpnEast.yaml
   Disney:
     <<: *rpCmn
     behavior: classical
@@ -722,9 +727,8 @@ rules:
   - DOMAIN,parsecusercontent.com,🚀 全局设置
   - DOMAIN-SUFFIX,parsec.app,🚀 全局设置
   - PROCESS-NAME,parsecd.exe,DIRECT
-  - IP-CIDR,4.240.0.0/12,DIRECT
-  # - PROCESS-NAME,ts3client_win64.exe,DIRECT
-  - DOMAIN,hanime1.me,DIRECT
+  - DOMAIN,hanime1.me,🎯 国内网络
+  - RULE-SET,MSFTJapanEast,🎯 国内网络
   - RULE-SET,EHGallery,🇺🇸 北美节点
   - RULE-SET,Pixiv,🇯🇵 日韩节点
   - RULE-SET,BilibiliIntl,🇷🇪 其他区域
