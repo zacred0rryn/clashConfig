@@ -728,7 +728,6 @@ rules:
   - DOMAIN-SUFFIX,parsec.app,🚀 全局设置
   - PROCESS-NAME,parsecd.exe,DIRECT
   - DOMAIN,hanime1.me,🎯 国内网络
-  - RULE-SET,MSFTJapanEast,🎯 国内网络
   - RULE-SET,EHGallery,🇺🇸 北美节点
   - RULE-SET,Pixiv,🇯🇵 日韩节点
   - RULE-SET,BilibiliIntl,🇷🇪 其他区域
@@ -753,6 +752,7 @@ rules:
   - RULE-SET,Apple,🍎 苹果服务
   - RULE-SET,Google,📢 谷歌FCM
   - RULE-SET,Proxy,🚀 全局设置
+  - RULE-SET,MSFTJapanEast,🎯 国内网络
   - RULE-SET,Direct,🎯 国内网络
   - RULE-SET,lanCIDR,DIRECT
   - RULE-SET,cnCIDR,🎯 国内网络
