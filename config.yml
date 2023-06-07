@@ -758,8 +758,8 @@ rules:
   - RULE-SET,CosovCDN,🌏 国内媒体,no-resolve
   - RULE-SET,MSFTJapanEast,🎯 国内网络,no-resolve
   - RULE-SET,Direct,🎯 国内网络
-  - RULE-SET,lanCIDR,DIRECT,no-resolve
-  - RULE-SET,cnCIDR,🎯 国内网络,no-resolve
-  - GEOIP,LAN,DIRECT,no-resolve
+  - RULE-SET,lanCIDR,DIRECT
+  - RULE-SET,cnCIDR,🎯 国内网络
+  - GEOIP,LAN,DIRECT
   - GEOIP,CN,🎯 国内网络,no-resolve
   - MATCH,🐟 其他网站
