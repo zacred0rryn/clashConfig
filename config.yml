@@ -17,7 +17,7 @@ hosts:
   'services.googleapis.cn': 142.250.196.131
   'www.google.cn': 142.250.196.131
   'upos-sz-mirrorcosov.bilivideo.com': 101.33.21.251
-  'upos-hz-mirrorakam.akamaized.net': 23.200.74.8
+  'upos-hz-mirrorakam.akamaized.net': 23.48.201.33
 
 dns:
   enable: true
@@ -100,6 +100,15 @@ dns:
       - +.googletagmanager.com
       - +.googletagservices.com
   fake-ip-filter:
+    - '*.msftconnecttest.com'
+    - '*.msftncsi.com'
+    - 'msftconnecttest.com'
+    - 'msftncsi.com'
+    - 'stun.*.*'
+    - 'stun.*.*.*'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.stun.*.*.*.*'
     - '*.lan'
     - '*.localdomain'
     - '*.example'
@@ -153,10 +162,6 @@ dns:
     - '*.xiami.com'
     - '*.music.migu.cn'
     - 'music.migu.cn'
-    - '*.msftconnecttest.com'
-    - '*.msftncsi.com'
-    - 'msftconnecttest.com'
-    - 'msftncsi.com'
     - 'localhost.ptlogin2.qq.com'
     - 'localhost.sec.qq.com'
     - '+.srv.nintendo.net'
@@ -169,11 +174,6 @@ dns:
     - '+.wowsgame.cn'
     - '+.wargaming.net'
     - 'proxy.golang.org'
-    - 'stun.*.*'
-    - 'stun.*.*.*'
-    - '+.stun.*.*'
-    - '+.stun.*.*.*'
-    - '+.stun.*.*.*.*'
     - 'heartbeat.belkin.com'
     - '*.linksys.com'
     - '*.linksyssmartwifi.com'
@@ -714,7 +714,7 @@ proxy-groups:
 
 rules:
   - RULE-SET,PublicDNS,REJECT,no-resolve
-  - RULE-SET,PublicDNSDomain,REJECT,no-resolve
+  - RULE-SET,PublicDNSDomain,REJECT
   - SCRIPT,QUIC,REJECT,no-resolve
   - SCRIPT,BilibiliP2P,REJECT,no-resolve
   - DOMAIN,clash.razord.top,DIRECT
@@ -733,34 +733,33 @@ rules:
   - DOMAIN-SUFFIX,parsec.app,🚀 全局设置
   - PROCESS-NAME,parsecd.exe,DIRECT
   - DOMAIN,hanime1.me,🎯 国内网络
-  - RULE-SET,EHGallery,🇺🇸 北美节点
+  - RULE-SET,EHGallery,🇺🇸 北美节点,no-resolve
   - RULE-SET,Pixiv,🇯🇵 日韩节点
   - RULE-SET,BilibiliIntl,🇷🇪 其他区域
-  - RULE-SET,ipAttributionReject,🚫 请求拦截
+  - RULE-SET,ipAttributionReject,🚫 请求拦截,no-resolve
   - RULE-SET,ipAttributionDirect,🎯 国内网络
-  - RULE-SET,ipAttributionProxy,🚩 IP属地
-  - RULE-SET,Bilibili,🌏 国内媒体
+  - RULE-SET,ipAttributionProxy,🚩 IP属地,no-resolve
+  - RULE-SET,Bilibili,🌏 国内媒体,no-resolve
   - RULE-SET,iCloud,🎯 国内网络
   - RULE-SET,PikPak,📲 Telegram
-  - RULE-SET,telegramCIDR,📲 Telegram
+  - RULE-SET,telegramCIDR,📲 Telegram,no-resolve
   - RULE-SET,Bahamut,📺 巴哈姆特
   - RULE-SET,Disney,🎥 Disney
   - RULE-SET,Netflix,🎥 Netflix
   - RULE-SET,TikTok,🌍 国外媒体
-  - RULE-SET,YouTube,📹 Youtube
-  - RULE-SET,Spotify,🎵 音乐流媒体
+  - RULE-SET,YouTube,📹 Youtube,no-resolve
+  - RULE-SET,Spotify,🎵 音乐流媒体,no-resolve
   - RULE-SET,OneDrive,Ⓜ️ 微软云盘
-  - DOMAIN-SUFFIX,jmsooo.com,🌏 出海媒体
   - RULE-SET,Emby,🌏 出海媒体
   - RULE-SET,Apple,🍎 苹果服务
   - RULE-SET,Google,📢 谷歌FCM
   - RULE-SET,Proxy,🚀 全局设置
-  - RULE-SET,AkamizedCDN,🌏 国内媒体
-  - RULE-SET,CosovCDN,🌏 国内媒体
-  - RULE-SET,MSFTJapanEast,🎯 国内网络
+  - RULE-SET,AkamizedCDN,🌏 国内媒体,no-resolve
+  - RULE-SET,CosovCDN,🌏 国内媒体,no-resolve
+  - RULE-SET,MSFTJapanEast,🎯 国内网络,no-resolve
   - RULE-SET,Direct,🎯 国内网络
-  - RULE-SET,lanCIDR,DIRECT
-  - RULE-SET,cnCIDR,🎯 国内网络
-  - GEOIP,LAN,DIRECT
-  - GEOIP,CN,🎯 国内网络
+  - RULE-SET,lanCIDR,DIRECT,no-resolve
+  - RULE-SET,cnCIDR,🎯 国内网络,no-resolve
+  - GEOIP,LAN,DIRECT,no-resolve
+  - GEOIP,CN,🎯 国内网络,no-resolve
   - MATCH,🐟 其他网站
