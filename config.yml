@@ -1,11 +1,11 @@
-# Paste your clash subscription link at column 199
+# 在200行粘贴订阅链接
 mixed-port: 7890
 redir-port: 7892
 allow-lan: false
 mode: Rule
 log-level: info
 external-controller: 0.0.0.0:9090
-secret: ""
+secret: "" # 对于未修复路径穿越漏洞的Clash内核版本，请注意有关密钥的配置并修改上一行的端口以防止安全风险
 clash-for-android:
   append-system-dns: false
 profile:
@@ -25,8 +25,8 @@ dns:
   ipv6: true
   listen: ":53"
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16  # Fake IP addresses pool CIDR
-  use-hosts: true  # lookup hosts and return IP record
+  fake-ip-range: 198.18.0.1/16  # Fake IP 池 CIDR
+  use-hosts: true  # 查询 hosts 并返回 IP 记录
   default-nameserver:
     # - 119.29.29.29
     - 8.8.4.4
@@ -193,10 +193,11 @@ dns:
     - '*.ffxiv.com'
     - '*.mcdn.bilivideo.cn'
 
+# 定义、获取代理集
 proxy-provider-common: &ppCmn
   type: http
   path: ./providers/proxy/Proxies.yaml
-  url:  # Paste subscription link here
+  url:  # 此行粘贴订阅链接用作代理集来源
   interval: 7200
   health-check:
     enable: true
@@ -237,6 +238,7 @@ proxy-providers:
   #   <<: *ppCmn
   #   filter: Disney|迪士尼
 
+# 定义、获取规则集
 rule-provider-common: &rpCmn
   type: http
   behavior: domain
@@ -426,6 +428,7 @@ script:
     QUIC: "network == 'udp' and dst_port == 443"
     BilibiliP2P: "network == 'udp' and match_provider('Bilibili')"
 
+# 定义策略组
 group-select-common: &gsCmn
   type: select
   proxies:
@@ -606,7 +609,7 @@ proxy-groups:
   - name: 🐟 其他网站
     <<: *gsCmn
 
-  - name: --------------------------------
+  - name: -------------------------------- # Under this line are urltest-based groups
     type: select
     proxies:
       - REJECT
@@ -729,6 +732,7 @@ proxy-groups:
     use: 
       - 7.Other
 
+# 定义分流规则
 rules:
   - RULE-SET,PublicDNS,REJECT,no-resolve
   - RULE-SET,PublicDNSDomain,REJECT
