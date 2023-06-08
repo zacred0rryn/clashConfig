@@ -426,8 +426,7 @@ rule-providers:
 script:
   engine: expr
   shortcuts:
-    QUIC: network == 'udp' and dst_port == 443
-    BilibiliP2P: network == 'udp' and match_provider('Bilibili')
+    QUIC: "network == 'udp' and dst_port == 443"
 
 # 定义策略组
 group-select-common: &gsCmn
@@ -738,7 +737,6 @@ rules:
   - RULE-SET,PublicDNS,REJECT,no-resolve
   - RULE-SET,PublicDNSDomain,REJECT
   - SCRIPT,QUIC,REJECT,no-resolve
-  - SCRIPT,BilibiliP2P,REJECT,no-resolve
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
   - RULE-SET,Applications,DIRECT
