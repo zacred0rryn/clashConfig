@@ -1,4 +1,4 @@
-# Paste your clash subscription link at column 198
+# Paste your clash subscription link at column 199
 mixed-port: 7890
 redir-port: 7892
 allow-lan: false
@@ -16,6 +16,7 @@ profile:
 hosts:
   'services.googleapis.cn': 142.250.196.131
   'www.google.cn': 142.250.196.131
+  # 'chat.openai.com': 104.18.2.161
   'upos-sz-mirrorcosov.bilivideo.com': 101.33.21.251
   'upos-hz-mirrorakam.akamaized.net': 23.48.201.33
 
@@ -195,7 +196,7 @@ dns:
 proxy-provider-common: &ppCmn
   type: http
   path: ./providers/proxy/Proxies.yaml
-  url: # Paste subscription link here
+  url:  # Paste subscription link here
   interval: 7200
   health-check:
     enable: true
@@ -242,89 +243,19 @@ rule-provider-common: &rpCmn
   interval: 86400
 
 rule-providers:
-  PublicDNS:
-    <<: *rpCmn
-    behavior: ipcidr
-    url: https://rules.kr328.app/public-dns.yaml
-    path: ./providers/rule/publicDNS.yaml
-  PublicDNSDomain:
-    <<: *rpCmn
-    url: https://rules.kr328.app/public-dns-domain.yaml
-    path: ./providers/rule/publicDNSDomain.yaml
   adBlock:
     <<: *rpCmn
     url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Advertising/Advertising_Domain.yaml
     path: ./providers/rule/adbDomain.yaml
-  ipAttributionProxy:
+  AkamizedCDN:
     <<: *rpCmn
-    behavior: classical
-    url: https://fastly.jsdelivr.net/gh/lwd-temp/anti-ip-attribution@main/generated/rule-provider-proxy.yaml
-    path: ./providers/rule/ipattributionP.yaml
-  ipAttributionDirect:
-    <<: *rpCmn
-    behavior: classical
-    url: https://fastly.jsdelivr.net/gh/lwd-temp/anti-ip-attribution@main/generated/rule-provider-direct.yaml
-    path: ./providers/rule/ipattributionD.yaml
-  ipAttributionReject:
-    <<: *rpCmn
-    behavior: classical
-    url: https://fastly.jsdelivr.net/gh/lwd-temp/anti-ip-attribution@main/generated/rule-provider-reject.yaml
-    path: ./providers/rule/ipattributionR.yaml
-  Reject:
-    <<: *rpCmn
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
-    path: ./providers/rule/reject.yaml
-  iCloud:
-    <<: *rpCmn
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt
-    path: ./providers/rule/icloud.yaml
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/zacred0rryn/clashConfig@main/providers/rule/akamCDN.yaml
+    path: ./providers/rule/akamCDN.yaml
   Apple:
     <<: *rpCmn
     url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt
     path: ./providers/rule/apple.yaml
-  Google:
-    <<: *rpCmn
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt
-    path: ./providers/rule/google.yaml
-  Proxy:
-    <<: *rpCmn
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
-    path: ./providers/rule/proxy.yaml
-  Direct:
-    <<: *rpCmn
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt
-    path: ./providers/rule/direct.yaml
-  Private:
-    <<: *rpCmn
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt
-    path: ./providers/rule/private.yaml
-  GFW:
-    <<: *rpCmn
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt
-    path: ./providers/rule/gfw.yaml
-  greatFire:
-    <<: *rpCmn
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/greatfire.txt
-    path: ./providers/rule/greatfire.yaml
-  tld-not-cn:
-    <<: *rpCmn
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt
-    path: ./providers/rule/tld-not-cn.yaml
-  telegramCIDR:
-    <<: *rpCmn
-    behavior: ipcidr
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt
-    path: ./providers/rule/telegramcidr.yaml
-  cnCIDR:
-    <<: *rpCmn
-    behavior: ipcidr
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt
-    path: ./providers/rule/cncidr.yaml
-  lanCIDR:
-    <<: *rpCmn
-    behavior: ipcidr
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
-    path: ./providers/rule/lancidr.yaml
   Applications:
     <<: *rpCmn
     behavior: classical
@@ -345,75 +276,150 @@ rule-providers:
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BiliBiliIntl/BiliBiliIntl.yaml
     path: ./providers/rule/bilibiliIntl.yaml
-  AkamizedCDN:
+  cnCIDR:
     <<: *rpCmn
     behavior: ipcidr
-    url: https://fastly.jsdelivr.net/gh/zacred0rryn/clashConfig@main/providers/rule/akamCDN.yaml
-    path: ./providers/rule/akamCDN.yaml
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt
+    path: ./providers/rule/cncidr.yaml
   CosovCDN:
     <<: *rpCmn
     behavior: ipcidr
     url: https://fastly.jsdelivr.net/gh/zacred0rryn/clashConfig@main/providers/rule/cosovCDN.yaml
     path: ./providers/rule/cosovCDN.yaml
-  MSFTJapanEast:
+  Direct:
     <<: *rpCmn
-    behavior: ipcidr
-    url: https://fastly.jsdelivr.net/gh/zacred0rryn/clashConfig@main/providers/rule/msftJpnEast.yaml
-    path: ./providers/rule/msftJpnEast.yaml
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt
+    path: ./providers/rule/direct.yaml
   Disney:
     <<: *rpCmn
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Disney/Disney.yaml
     path: ./providers/rule/Disney.yaml
-  Netflix:
-    <<: *rpCmn
-    behavior: classical
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Netflix/Netflix.yaml
-    path: ./providers/rule/Netflix.yaml
-  PikPak:
-    <<: *rpCmn
-    behavior: classical
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/PikPak/PikPak.yaml
-    path: ./providers/rule/PikPak.yaml
-  TikTok:
-    <<: *rpCmn
-    behavior: classical
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/TikTok/TikTok.yaml
-    path: ./providers/rule/TikTok.yaml
-  YouTube:
-    <<: *rpCmn
-    behavior: classical
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTube/YouTube.yaml
-    path: ./providers/rule/YouTube.yaml
-  Spotify:
-    <<: *rpCmn
-    behavior: classical
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Spotify/Spotify.yaml
-    path: ./providers/rule/Spotify.yaml
-  Emby:
-    <<: *rpCmn
-    behavior: classical
-    url: https://raw.fastgit.org/justdoiting/emby-rules/main/Emby.yaml
-    path: ./providers/rule/Emby.yaml
-  OneDrive:
-    <<: *rpCmn
-    behavior: classical
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OneDrive/OneDrive.yaml
-    path: ./providers/rule/OD.yaml
-  Pixiv:
-    <<: *rpCmn
-    behavior: classical
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Pixiv/Pixiv.yaml
-    path: ./providers/rule/pixiv.yaml
   EHGallery:
     <<: *rpCmn
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/EHGallery/EHGallery.yaml
     path: ./providers/rule/ehGallery.yaml
+  Emby:
+    <<: *rpCmn
+    behavior: classical
+    url: https://raw.fastgit.org/justdoiting/emby-rules/main/Emby.yaml
+    path: ./providers/rule/Emby.yaml
+  GFW:
+    <<: *rpCmn
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt
+    path: ./providers/rule/gfw.yaml
+  Google:
+    <<: *rpCmn
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt
+    path: ./providers/rule/google.yaml
+  greatFire:
+    <<: *rpCmn
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/greatfire.txt
+    path: ./providers/rule/greatfire.yaml
+  iCloud:
+    <<: *rpCmn
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt
+    path: ./providers/rule/icloud.yaml
+  ipAttributionDirect:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/lwd-temp/anti-ip-attribution@main/generated/rule-provider-direct.yaml
+    path: ./providers/rule/ipattributionD.yaml
+  ipAttributionProxy:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/lwd-temp/anti-ip-attribution@main/generated/rule-provider-proxy.yaml
+    path: ./providers/rule/ipattributionP.yaml
+  ipAttributionReject:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/lwd-temp/anti-ip-attribution@main/generated/rule-provider-reject.yaml
+    path: ./providers/rule/ipattributionR.yaml
+  lanCIDR:
+    <<: *rpCmn
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
+    path: ./providers/rule/lancidr.yaml
+  MSFTJapanEast:
+    <<: *rpCmn
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/zacred0rryn/clashConfig@main/providers/rule/msftJpnEast.yaml
+    path: ./providers/rule/msftJpnEast.yaml
+  Netflix:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Netflix/Netflix.yaml
+    path: ./providers/rule/Netflix.yaml
+  OneDrive:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OneDrive/OneDrive.yaml
+    path: ./providers/rule/OD.yaml
+  OpenAI:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml
+    path: ./providers/rule/OpenAI.yaml
+  PikPak:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/PikPak/PikPak.yaml
+    path: ./providers/rule/PikPak.yaml
+  Pixiv:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Pixiv/Pixiv.yaml
+    path: ./providers/rule/pixiv.yaml
+  Private:
+    <<: *rpCmn
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt
+    path: ./providers/rule/private.yaml
+  Proxy:
+    <<: *rpCmn
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
+    path: ./providers/rule/proxy.yaml
+  PublicDNS:
+    <<: *rpCmn
+    behavior: ipcidr
+    url: https://rules.kr328.app/public-dns.yaml
+    path: ./providers/rule/publicDNS.yaml
+  PublicDNSDomain:
+    <<: *rpCmn
+    url: https://rules.kr328.app/public-dns-domain.yaml
+    path: ./providers/rule/publicDNSDomain.yaml
+  Reject:
+    <<: *rpCmn
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
+    path: ./providers/rule/reject.yaml
+  Spotify:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Spotify/Spotify.yaml
+    path: ./providers/rule/Spotify.yaml
   SteamCN:
     <<: *rpCmn
     url: https://rules.kr328.app/steam@cn.yaml
     path: ./providers/rule/steamCN.yaml
+  telegramCIDR:
+    <<: *rpCmn
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt
+    path: ./providers/rule/telegramcidr.yaml
+  TikTok:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/TikTok/TikTok.yaml
+    path: ./providers/rule/TikTok.yaml
+  tld-not-cn:
+    <<: *rpCmn
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt
+    path: ./providers/rule/tld-not-cn.yaml
+  YouTube:
+    <<: *rpCmn
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTube/YouTube.yaml
+    path: ./providers/rule/YouTube.yaml
 
 script:
   shortcuts:
@@ -473,6 +479,17 @@ proxy-groups:
 
   - name: 📹 Youtube
     <<: *gsCmn
+
+  - name: 🤖 OpenAI
+    type: select
+    proxies:
+      - 🇺🇸 北美节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日韩节点
+      - 🇸🇬 新加坡节点
+      - 🇮🇪 欧洲节点
+      - 🇷🇪 其他区域
+      - 🚀 手动选择
 
   - name: 🎥 Netflix
     type: select
@@ -733,6 +750,7 @@ rules:
   - DOMAIN-SUFFIX,parsec.app,🚀 全局设置
   - PROCESS-NAME,parsecd.exe,DIRECT
   - DOMAIN,hanime1.me,🎯 国内网络
+  - RULE-SET,OpenAI,🤖 OpenAI
   - RULE-SET,EHGallery,🇺🇸 北美节点,no-resolve
   - RULE-SET,Pixiv,🇯🇵 日韩节点
   - RULE-SET,BilibiliIntl,🇷🇪 其他区域
