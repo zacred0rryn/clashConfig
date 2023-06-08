@@ -10,13 +10,14 @@
 * Mixin config is as follow: 
 ```yml
 mixin:
-  tun: 
-    enable: true
-    stack: system
-    dns-hijack:
-      - udp://any:53
-      - tcp://any:53
-    auto-redir: true
-    auto-route: true
-    auto-detect-interface: true
+    tun:
+        enable: true
+        stack: system
+        dns-hijack:
+            - udp://any:53
+            - tcp://any:53
+        auto-redir: true
+        auto-route: true
+        auto-detect-interface: true # conflict with `interface-name`
+# interface-name: eth0 # conflict with `tun.auto-detect-interface`
 ```
