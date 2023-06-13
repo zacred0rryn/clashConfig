@@ -1,4 +1,4 @@
-# 在200行粘贴订阅链接
+# 在199行粘贴订阅链接
 mixed-port: 7890
 redir-port: 7892
 allow-lan: false
@@ -193,8 +193,7 @@ dns:
     - '*.ffxiv.com'
     - '*.mcdn.bilivideo.cn'
 
-# 定义、获取代理集
-proxy-provider-common: &ppCmn
+proxy-provider-common: &pp
   type: http
   path: ./providers/proxy/Proxies.yaml
   url:  # 此行粘贴订阅链接用作代理集来源
@@ -202,223 +201,222 @@ proxy-provider-common: &ppCmn
   health-check:
     enable: true
     interval: 180
-    url: "http://cp.cloudflare.com/generate_204"
+    url: http://cp.cloudflare.com/generate_204
 
 proxy-providers:
   0.Proxies:
-    <<: *ppCmn
+    <<: *pp
   1.HK:
-    <<: *ppCmn
+    <<: *pp
     filter: 港|HK|Hong Kong # |🇭🇰
   2.TW:
-    <<: *ppCmn
+    <<: *pp
     filter: 台|TW|Tai Wan|Taiwan # |🇹🇼|🇨🇳
   3.JK:
-    <<: *ppCmn
+    <<: *pp
     filter: 日|东京|韩|首尔|JP|Japan|Kor|Seo # |🇯🇵|🇰🇷
   4.NA:
-    <<: *ppCmn
+    <<: *pp
     filter: 美|加州|洛|圣荷西|波特兰|加拿大|U.S.|States|Ame|Can # |🇺🇸|🇺🇲|🇨🇦
   5.SG:
-    <<: *ppCmn
+    <<: *pp
     filter: 新|狮城|SG|Singapore #|🇸🇬
   6.EU:
-    <<: *ppCmn
+    <<: *pp
     filter: 俄|德|法兰克福|西班牙|法|巴黎|英|伦|爱尔兰|意|荷兰|土|Rus|UK|Kingdom|Eng|London|Ire|Fra|Paris|Ger|Spa|Neth|Ita|Tur # |🇩🇪|🇪🇸|🇫🇷|🇬🇧|🇮🇹|🇳🇱|🇹🇷
   7.Other:
-    <<: *ppCmn
+    <<: *pp
     filter: 阿|澳|巴西|智|以|印|菲|泰|南非|马来|Arg|Aus|Bras|Chil|Isr|Ind|Phi|Thai|Afr|Dub|Joh|Mal # |🇦🇪|🇦🇷|🇦🇺|🇧🇷|🇨🇱|🇮🇱|🇮🇳|🇵🇭|🇹🇭|🇿🇦|🇲🇾
   # 8.Native:
-  #   <<: *ppCmn
+  #   <<: *pp
   #   filter: 原生
   9-1.NF:
-    <<: *ppCmn
+    <<: *pp
     filter: NF|奈飞|Netflix
   # 9-2.Disney:
-  #   <<: *ppCmn
+  #   <<: *pp
   #   filter: Disney|迪士尼
 
-# 定义、获取规则集
-rule-provider-common: &rpCmn
+rule-provider-common: &rp
   type: http
   behavior: domain
   interval: 86400
 
 rule-providers:
   adBlock:
-    <<: *rpCmn
+    <<: *rp
     url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Advertising/Advertising_Domain.yaml
     path: ./providers/rule/adbDomain.yaml
   AkamizedCDN:
-    <<: *rpCmn
+    <<: *rp
     behavior: ipcidr
     url: https://fastly.jsdelivr.net/gh/zacred0rryn/clashConfig@main/providers/rule/akamCDN.yaml
     path: ./providers/rule/akamCDN.yaml
   Apple:
-    <<: *rpCmn
+    <<: *rp
     url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt
     path: ./providers/rule/apple.yaml
   Applications:
-    <<: *rpCmn
+    <<: *rp
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt
     path: ./providers/rule/applications.yaml
   Bahamut:
-    <<: *rpCmn
+    <<: *rp
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Bahamut/Bahamut.yaml
     path: ./providers/rule/bahamut.yaml
   Bilibili:
-    <<: *rpCmn
+    <<: *rp
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BiliBili/BiliBili.yaml
     path: ./providers/rule/bilibili.yaml
   BilibiliIntl:
-    <<: *rpCmn
+    <<: *rp
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BiliBiliIntl/BiliBiliIntl.yaml
     path: ./providers/rule/bilibiliIntl.yaml
   cnCIDR:
-    <<: *rpCmn
+    <<: *rp
     behavior: ipcidr
     url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt
     path: ./providers/rule/cncidr.yaml
   CosovCDN:
-    <<: *rpCmn
+    <<: *rp
     behavior: ipcidr
     url: https://fastly.jsdelivr.net/gh/zacred0rryn/clashConfig@main/providers/rule/cosovCDN.yaml
     path: ./providers/rule/cosovCDN.yaml
   Direct:
-    <<: *rpCmn
+    <<: *rp
     url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt
     path: ./providers/rule/direct.yaml
   Disney:
-    <<: *rpCmn
+    <<: *rp
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Disney/Disney.yaml
     path: ./providers/rule/Disney.yaml
   EHGallery:
-    <<: *rpCmn
+    <<: *rp
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/EHGallery/EHGallery.yaml
     path: ./providers/rule/ehGallery.yaml
   Emby:
-    <<: *rpCmn
+    <<: *rp
     behavior: classical
     url: https://raw.fastgit.org/justdoiting/emby-rules/main/Emby.yaml
     path: ./providers/rule/Emby.yaml
   GFW:
-    <<: *rpCmn
+    <<: *rp
     url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt
     path: ./providers/rule/gfw.yaml
   Google:
-    <<: *rpCmn
+    <<: *rp
     url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt
     path: ./providers/rule/google.yaml
   greatFire:
-    <<: *rpCmn
+    <<: *rp
     url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/greatfire.txt
     path: ./providers/rule/greatfire.yaml
   iCloud:
-    <<: *rpCmn
+    <<: *rp
     url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt
     path: ./providers/rule/icloud.yaml
   ipAttributionDirect:
-    <<: *rpCmn
+    <<: *rp
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/lwd-temp/anti-ip-attribution@main/generated/rule-provider-direct.yaml
     path: ./providers/rule/ipattributionD.yaml
   ipAttributionProxy:
-    <<: *rpCmn
+    <<: *rp
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/lwd-temp/anti-ip-attribution@main/generated/rule-provider-proxy.yaml
     path: ./providers/rule/ipattributionP.yaml
   ipAttributionReject:
-    <<: *rpCmn
+    <<: *rp
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/lwd-temp/anti-ip-attribution@main/generated/rule-provider-reject.yaml
     path: ./providers/rule/ipattributionR.yaml
   lanCIDR:
-    <<: *rpCmn
+    <<: *rp
     behavior: ipcidr
     url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
     path: ./providers/rule/lancidr.yaml
   MSFTJapanEast:
-    <<: *rpCmn
+    <<: *rp
     behavior: ipcidr
     url: https://fastly.jsdelivr.net/gh/zacred0rryn/clashConfig@main/providers/rule/msftJpnEast.yaml
     path: ./providers/rule/msftJpnEast.yaml
   Netflix:
-    <<: *rpCmn
+    <<: *rp
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Netflix/Netflix.yaml
     path: ./providers/rule/Netflix.yaml
   OneDrive:
-    <<: *rpCmn
+    <<: *rp
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OneDrive/OneDrive.yaml
     path: ./providers/rule/OD.yaml
   OpenAI:
-    <<: *rpCmn
+    <<: *rp
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml
     path: ./providers/rule/OpenAI.yaml
   PikPak:
-    <<: *rpCmn
+    <<: *rp
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/PikPak/PikPak.yaml
     path: ./providers/rule/PikPak.yaml
   Pixiv:
-    <<: *rpCmn
+    <<: *rp
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Pixiv/Pixiv.yaml
     path: ./providers/rule/pixiv.yaml
   Private:
-    <<: *rpCmn
+    <<: *rp
     url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt
     path: ./providers/rule/private.yaml
   Proxy:
-    <<: *rpCmn
+    <<: *rp
     url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
     path: ./providers/rule/proxy.yaml
   PublicDNS:
-    <<: *rpCmn
+    <<: *rp
     behavior: ipcidr
     url: https://rules.kr328.app/public-dns.yaml
     path: ./providers/rule/publicDNS.yaml
   PublicDNSDomain:
-    <<: *rpCmn
+    <<: *rp
     url: https://rules.kr328.app/public-dns-domain.yaml
     path: ./providers/rule/publicDNSDomain.yaml
   Reject:
-    <<: *rpCmn
+    <<: *rp
     url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
     path: ./providers/rule/reject.yaml
   Spotify:
-    <<: *rpCmn
+    <<: *rp
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Spotify/Spotify.yaml
     path: ./providers/rule/Spotify.yaml
   SteamCN:
-    <<: *rpCmn
+    <<: *rp
     url: https://rules.kr328.app/steam@cn.yaml
     path: ./providers/rule/steamCN.yaml
   telegramCIDR:
-    <<: *rpCmn
+    <<: *rp
     behavior: ipcidr
     url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt
     path: ./providers/rule/telegramcidr.yaml
   TikTok:
-    <<: *rpCmn
+    <<: *rp
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/TikTok/TikTok.yaml
     path: ./providers/rule/TikTok.yaml
   tld-not-cn:
-    <<: *rpCmn
+    <<: *rp
     url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt
     path: ./providers/rule/tld-not-cn.yaml
   YouTube:
-    <<: *rpCmn
+    <<: *rp
     behavior: classical
     url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTube/YouTube.yaml
     path: ./providers/rule/YouTube.yaml
@@ -428,12 +426,13 @@ script:
   shortcuts:
     QUIC: "network == 'udp' and dst_port == 443"
 
-# 定义策略组
-group-select-common: &gsCmn
+group-select-common: &gs
   type: select
   proxies:
     - 🚀 全局设置
     - ♻️ 自动选择
+    - ⚖️ 负载均衡-散列
+    - ⚖️ 负载均衡-轮询
     - 🇭🇰 香港节点
     - 🇹🇼 台湾节点
     - 🇯🇵 日韩节点
@@ -444,19 +443,26 @@ group-select-common: &gsCmn
     - 🚀 手动选择
     - DIRECT
 
-group-auto-common: &gaCmn
+group-auto-common: &ga
   type: url-test
+  url: http://cp.cloudflare.com/generate_204
+  interval: 180
+
+group-load_balance-common: &glb
+  type: load-balance
   url: http://cp.cloudflare.com/generate_204
   interval: 180
 
 proxy-groups:
   - name: 🚩 IP属地
-    <<: *gsCmn
+    <<: *gs
 
   - name: 🚀 全局设置
     type: select
     proxies:
       - ♻️ 自动选择
+      - ⚖️ 负载均衡-散列
+      - ⚖️ 负载均衡-轮询
       - 🇭🇰 香港节点
       - 🇹🇼 台湾节点
       - 🇯🇵 日韩节点
@@ -478,10 +484,12 @@ proxy-groups:
       - DIRECT
       - 🚀 全局设置
       - ♻️ 自动选择
+      - ⚖️ 负载均衡-散列
+      - ⚖️ 负载均衡-轮询
       - 🚀 手动选择
 
   - name: 📹 Youtube
-    <<: *gsCmn
+    <<: *gs
 
   - name: 🤖 OpenAI
     type: select
@@ -501,6 +509,8 @@ proxy-groups:
       - 🌏 原生节点
       - 🚀 全局设置
       - ♻️ 自动选择
+      - ⚖️ 负载均衡-散列
+      - ⚖️ 负载均衡-轮询
       - 🇭🇰 香港节点
       - 🇹🇼 台湾节点
       - 🇯🇵 日韩节点
@@ -518,6 +528,8 @@ proxy-groups:
       - 🌏 原生节点
       - 🚀 全局设置
       - ♻️ 自动选择
+      - ⚖️ 负载均衡-散列
+      - ⚖️ 负载均衡-轮询
       - 🇭🇰 香港节点
       - 🇹🇼 台湾节点
       - 🇯🇵 日韩节点
@@ -537,7 +549,7 @@ proxy-groups:
       - DIRECT
 
   - name: 🎵 音乐流媒体
-    <<: *gsCmn
+    <<: *gs
 
   - name: 🌍 国外媒体
     type: select
@@ -545,6 +557,8 @@ proxy-groups:
       - 🌏 原生节点
       - 🚀 全局设置
       - ♻️ 自动选择
+      - ⚖️ 负载均衡-散列
+      - ⚖️ 负载均衡-轮询
       - 🇭🇰 香港节点
       - 🇹🇼 台湾节点
       - 🇯🇵 日韩节点
@@ -562,6 +576,8 @@ proxy-groups:
       - 🌏 原生节点
       - 🚀 全局设置
       - ♻️ 自动选择
+      - ⚖️ 负载均衡-散列
+      - ⚖️ 负载均衡-轮询
       - 🇭🇰 香港节点
       - 🇹🇼 台湾节点
       - 🇯🇵 日韩节点
@@ -578,6 +594,8 @@ proxy-groups:
       - 🌏 原生节点
       - 🚀 全局设置
       - ♻️ 自动选择
+      - ⚖️ 负载均衡-散列
+      - ⚖️ 负载均衡-轮询
       - 🇭🇰 香港节点
       - 🇹🇼 台湾节点
       - 🇯🇵 日韩节点
@@ -588,16 +606,16 @@ proxy-groups:
       - 🚀 手动选择
 
   - name: 📲 Telegram
-    <<: *gsCmn
+    <<: *gs
 
   - name: 📢 谷歌FCM
-    <<: *gsCmn
+    <<: *gs
 
   - name: Ⓜ️ 微软云盘
-    <<: *gsCmn
+    <<: *gs
 
   - name: 🍎 苹果服务
-    <<: *gsCmn
+    <<: *gs
 
   - name: 🚫 请求拦截
     type: select
@@ -607,9 +625,9 @@ proxy-groups:
       - 🚀 全局设置
 
   - name: 🐟 其他网站
-    <<: *gsCmn
+    <<: *gs
 
-  - name: -------------------------------- # Under this line are urltest-based groups
+  - name: -------------------------------- # 以下为子策略组
     type: select
     proxies:
       - REJECT
@@ -620,6 +638,8 @@ proxy-groups:
       - 1.HK
     proxies:
       - ♻️ 香港自动
+      - ⚖️ 香港散列
+      - ⚖️ 香港轮询
       - DIRECT
 
   - name: 🇹🇼 台湾节点
@@ -628,6 +648,8 @@ proxy-groups:
       - 2.TW
     proxies:
       - ♻️ 台湾自动
+      - ⚖️ 台湾散列
+      - ⚖️ 台湾轮询
       - DIRECT
 
   - name: 🇯🇵 日韩节点
@@ -636,6 +658,8 @@ proxy-groups:
       - 3.JK
     proxies:
       - ♻️ 日韩自动
+      - ⚖️ 日韩散列
+      - ⚖️ 日韩轮询
       - DIRECT
 
   - name: 🇺🇸 北美节点
@@ -644,6 +668,8 @@ proxy-groups:
       - 4.NA
     proxies:
       - ♻️ 北美自动
+      - ⚖️ 北美散列
+      - ⚖️ 北美轮询
       - DIRECT
 
   - name: 🇸🇬 新加坡节点
@@ -652,6 +678,8 @@ proxy-groups:
       - 5.SG
     proxies:
       - ♻️ 新加坡自动
+      - ⚖️ 新加坡散列
+      - ⚖️ 新加坡轮询
       - DIRECT
 
   - name: 🇮🇪 欧洲节点
@@ -660,6 +688,8 @@ proxy-groups:
       - 6.EU
     proxies:
       - ♻️ 欧洲自动
+      - ⚖️ 欧洲散列
+      - ⚖️ 欧洲轮询
       - DIRECT
 
   - name: 🇷🇪 其他区域
@@ -668,6 +698,8 @@ proxy-groups:
       - 7.Other
     proxies:
       - ♻️ 其他自动
+      - ⚖️ 其他散列
+      - ⚖️ 其他轮询
       - DIRECT
 
   - name: 🌏 原生节点
@@ -691,49 +723,151 @@ proxy-groups:
     proxies:
       - DIRECT
 
+  - name: ================================ # 以下为自动化策略组
+    type: select
+    proxies:
+      - REJECT
+
   - name: ♻️ 自动选择
-    <<: *gaCmn
+    <<: *ga
+    use:
+      - 0.Proxies
+
+  - name: ⚖️ 负载均衡-散列
+    <<: *glb
+    strategy: consistent-hashing
+    use:
+      - 0.Proxies
+
+  - name: ⚖️ 负载均衡-轮询
+    <<: *glb
+    strategy: round-robin
     use:
       - 0.Proxies
 
   - name: ♻️ 香港自动
-    <<: *gaCmn
+    <<: *ga
+    use:
+      - 1.HK
+
+  - name: ⚖️ 香港散列
+    <<: *glb
+    strategy: consistent-hashing
+    use:
+      - 1.HK
+
+  - name: ⚖️ 香港轮询
+    <<: *glb
+    strategy: round-robin
     use:
       - 1.HK
 
   - name: ♻️ 台湾自动
-    <<: *gaCmn
+    <<: *ga
+    use:
+      - 2.TW
+
+  - name: ⚖️ 台湾散列
+    <<: *glb
+    strategy: consistent-hashing
+    use:
+      - 2.TW
+
+  - name: ⚖️ 台湾轮询
+    <<: *glb
+    strategy: round-robin
     use:
       - 2.TW
 
   - name: ♻️ 日韩自动
-    <<: *gaCmn
+    <<: *ga
+    use:
+      - 3.JK
+
+  - name: ⚖️ 日韩散列
+    <<: *glb
+    strategy: consistent-hashing
+    use:
+      - 3.JK
+
+  - name: ⚖️ 日韩轮询
+    <<: *glb
+    strategy: round-robin
     use:
       - 3.JK
 
   - name: ♻️ 北美自动
-    <<: *gaCmn
+    <<: *ga
     interval: 90
     use:
       - 4.NA
 
+  - name: ⚖️ 北美散列
+    <<: *glb
+    interval: 90
+    strategy: consistent-hashing
+    use:
+      - 4.NA
+
+  - name: ⚖️ 北美轮询
+    <<: *glb
+    interval: 90
+    strategy: round-robin
+    use:
+      - 4.NA
+
   - name: ♻️ 新加坡自动
-    <<: *gaCmn
+    <<: *ga
+    use:
+      - 5.SG
+
+  - name: ⚖️ 新加坡散列
+    <<: *glb
+    strategy: consistent-hashing
+    use:
+      - 5.SG
+
+  - name: ⚖️ 新加坡轮询
+    <<: *glb
+    strategy: round-robin
     use:
       - 5.SG
 
   - name: ♻️ 欧洲自动
-    <<: *gaCmn
+    <<: *ga
     use: 
       - 6.EU
 
+  - name: ⚖️ 欧洲散列
+    <<: *glb
+    strategy: consistent-hashing
+    use:
+      - 6.EU
+
+  - name: ⚖️ 欧洲轮询
+    <<: *glb
+    strategy: round-robin
+    use:
+      - 6.EU
+
   - name: ♻️ 其他自动
-    <<: *gaCmn
+    <<: *ga
     use: 
       - 7.Other
 
-# 定义分流规则
-rules:
+  - name: ⚖️ 其他散列
+    <<: *glb
+    strategy: consistent-hashing
+    use:
+      - 7.Other
+
+  - name: ⚖️ 其他轮询
+    <<: *glb
+    strategy: round-robin
+    use:
+      - 7.Other
+
+rules: # 对于基于IP-CIDR的规则，建议使用`no-resolve`防止DNS泄漏
   - RULE-SET,PublicDNS,REJECT,no-resolve
   - RULE-SET,PublicDNSDomain,REJECT
   - SCRIPT,QUIC,REJECT,no-resolve
@@ -772,6 +906,8 @@ rules:
   - RULE-SET,Spotify,🎵 音乐流媒体,no-resolve
   - RULE-SET,OneDrive,Ⓜ️ 微软云盘
   - RULE-SET,Emby,🌏 出海媒体
+  - DOMAIN-KEYWORD,jmsooo,🌏 出海媒体
+  - DOMAIN-SUFFIX,edge4k.com,🌏 出海媒体
   - RULE-SET,Apple,🍎 苹果服务
   - RULE-SET,Google,📢 谷歌FCM
   - RULE-SET,Proxy,🚀 全局设置
