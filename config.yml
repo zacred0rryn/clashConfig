@@ -305,18 +305,14 @@ rule-providers:
     behavior: classical
     url: https://raw.fastgit.org/justdoiting/emby-rules/main/Emby.yaml
     path: ./providers/rule/Emby.yaml
-  GFW:
-    <<: *rp
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt
-    path: ./providers/rule/gfw.yaml
+  # GFW: # 黑名单规则方案中使用
+  #   <<: *rp
+  #   url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt
+  #   path: ./providers/rule/gfw.yaml
   Google:
     <<: *rp
     url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt
     path: ./providers/rule/google.yaml
-  greatFire:
-    <<: *rp
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/greatfire.txt
-    path: ./providers/rule/greatfire.yaml
   iCloud:
     <<: *rp
     url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt
