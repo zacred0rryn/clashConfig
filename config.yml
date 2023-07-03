@@ -501,8 +501,8 @@ proxy-groups:
   - name: 🎥 Netflix
     type: select
     proxies:
-      - 🎥 奈飞节点
-      - 🌏 原生节点
+      # - 🎥 奈飞节点
+      # - 🌏 原生节点
       - 🚀 全局设置
       - ♻️ 自动选择
       - ⚖️ 负载均衡-散列
@@ -520,8 +520,8 @@ proxy-groups:
   - name: 🎥 Disney
     type: select
     proxies:
-      - 🎥 迪士尼节点
-      - 🌏 原生节点
+      # - 🎥 迪士尼节点
+      # - 🌏 原生节点
       - 🚀 全局设置
       - ♻️ 自动选择
       - ⚖️ 负载均衡-散列
@@ -550,7 +550,7 @@ proxy-groups:
   - name: 🌍 国外媒体
     type: select
     proxies:
-      - 🌏 原生节点
+      # - 🌏 原生节点
       - 🚀 全局设置
       - ♻️ 自动选择
       - ⚖️ 负载均衡-散列
@@ -569,7 +569,7 @@ proxy-groups:
     type: select
     proxies:
       - DIRECT
-      - 🌏 原生节点
+      # - 🌏 原生节点
       - 🚀 全局设置
       - ♻️ 自动选择
       - ⚖️ 负载均衡-散列
@@ -587,7 +587,7 @@ proxy-groups:
     type: select
     proxies:
       - DIRECT
-      - 🌏 原生节点
+      # - 🌏 原生节点
       - 🚀 全局设置
       - ♻️ 自动选择
       - ⚖️ 负载均衡-散列
@@ -698,26 +698,26 @@ proxy-groups:
       - ⚖️ 其他轮询
       - DIRECT
 
-  - name: 🌏 原生节点
-    type: select
-    # use:
-    #   - 8.Native
-    proxies:
-      - DIRECT
+  # - name: 🌏 原生节点
+  #   type: select
+  #   # use:
+  #   #   - 8.Native
+  #   proxies:
+  #     - DIRECT
 
-  - name: 🎥 奈飞节点
-    type: select
-    # use:
-    #   - 9-1.NF
-    proxies:
-      - DIRECT
+  # - name: 🎥 奈飞节点
+  #   type: select
+  #   # use:
+  #   #   - 9-1.NF
+  #   proxies:
+  #     - DIRECT
 
-  - name: 🎥 迪士尼节点
-    type: select
-    # use:
-    #   - 9-2.Disney
-    proxies:
-      - DIRECT
+  # - name: 🎥 迪士尼节点
+  #   type: select
+  #   # use:
+  #   #   - 9-2.Disney
+  #   proxies:
+  #     - DIRECT
 
   - name: ================================ # 以下为自动化策略组
     type: select
