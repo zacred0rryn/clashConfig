@@ -201,38 +201,38 @@ proxy-provider-common: &pp
   health-check:
     enable: true
     interval: 180
-    url: http://cp.cloudflare.com/generate_204
+    url: http://cp.cloudflare.com/generate_204 # http://www.gstatic.com/generate_204
 
 proxy-providers:
   0.Proxies:
     <<: *pp
   1.HK:
     <<: *pp
-    filter: 港|HK|Hong Kong # |🇭🇰
+    filter: 港|HK|Hong Kong
   2.TW:
     <<: *pp
-    filter: 台|TW|Tai Wan|Taiwan # |🇹🇼|🇨🇳
+    filter: 台|TW|Tai Wan|Taiwan
   3.JK:
     <<: *pp
-    filter: 日|东京|韩|首尔|JP|Japan|Kor|Seo # |🇯🇵|🇰🇷
+    filter: 日|东京|韩|首尔|JP|Japan|Kor|Seo
   4.NA:
     <<: *pp
-    filter: 美|加州|洛|圣荷西|波特兰|加拿大|U.S.|States|Ame|Can # |🇺🇸|🇺🇲|🇨🇦
+    filter: 美|加州|洛|圣荷西|波特兰|加拿大|U.S.|States|Ame|Can
   5.SG:
     <<: *pp
-    filter: 新|狮城|SG|Singapore #|🇸🇬
+    filter: 新|狮城|SG|Singapore
   6.EU:
     <<: *pp
-    filter: 俄|德|法兰克福|西班牙|法|巴黎|英|伦|爱尔兰|意|荷兰|土|Rus|UK|Kingdom|Eng|London|Ire|Fra|Paris|Ger|Spa|Neth|Ita|Tur # |🇩🇪|🇪🇸|🇫🇷|🇬🇧|🇮🇹|🇳🇱|🇹🇷
+    filter: 俄|德|法兰克福|西班牙|法|巴黎|英|伦|爱尔兰|意|荷兰|土|瑞|挪|乌|Rus|UK|Kingdom|Eng|London|Ire|Fra|Paris|Ger|Spa|Neth|Ita|Tur
   7.Other:
     <<: *pp
-    filter: 阿|澳|巴西|智|以|印|菲|泰|南非|马来|Arg|Aus|Bras|Chil|Isr|Ind|Phi|Thai|Afr|Dub|Joh|Mal # |🇦🇪|🇦🇷|🇦🇺|🇧🇷|🇨🇱|🇮🇱|🇮🇳|🇵🇭|🇹🇭|🇿🇦|🇲🇾
+    filter: 阿|澳|巴西|智|以|印|菲|泰|南非|马来|Arg|Aus|Bras|Chil|Isr|Ind|Phi|Thai|Afr|Dub|Joh|Mal
   # 8.Native:
   #   <<: *pp
   #   filter: 原生
-  9-1.NF:
-    <<: *pp
-    filter: NF|奈飞|Netflix
+  # 9-1.NF:
+  #   <<: *pp
+  #   filter: NF|奈飞|Netflix
   # 9-2.Disney:
   #   <<: *pp
   #   filter: Disney|迪士尼
@@ -441,12 +441,12 @@ group-select-common: &gs
 
 group-auto-common: &ga
   type: url-test
-  url: http://cp.cloudflare.com/generate_204
+  url: http://cp.cloudflare.com/generate_204 # http://www.gstatic.com/generate_204
   interval: 180
 
 group-load_balance-common: &glb
   type: load-balance
-  url: http://cp.cloudflare.com/generate_204
+  url: http://cp.cloudflare.com/generate_204 # http://www.gstatic.com/generate_204
   interval: 180
 
 proxy-groups:
@@ -707,8 +707,8 @@ proxy-groups:
 
   - name: 🎥 奈飞节点
     type: select
-    use:
-      - 9-1.NF
+    # use:
+    #   - 9-1.NF
     proxies:
       - DIRECT
 
@@ -874,6 +874,11 @@ rules: # 对于基于IP-CIDR的规则，建议使用`no-resolve`防止DNS泄漏
   - DOMAIN-SUFFIX,qlogo.cn,🎯 国内网络
   - RULE-SET,Reject,🚫 请求拦截
   - RULE-SET,adBlock,🚫 请求拦截
+  - DOMAIN-SUFFIX,miav-cse.avlyun.com,REJECT
+  - DOMAIN-SUFFIX,a0.app.xiaomi.com,REJECT
+  - DOMAIN-SUFFIX,miui-fxcse.avlyun.com,REJECT
+  - DOMAIN-SUFFIX,api.installer.xiaomi.com,REJECT
+  - IP-CIDR,157.148.47.204/32,REJECT,no-resolve
   - PROCESS-NAME,uu.exe,DIRECT
   - DOMAIN,canyouseeme.org,🎯 国内网络
   - RULE-SET,SteamCN,🎯 国内网络
@@ -912,7 +917,7 @@ rules: # 对于基于IP-CIDR的规则，建议使用`no-resolve`防止DNS泄漏
   - RULE-SET,MSFTJapanEast,🎯 国内网络,no-resolve
   - RULE-SET,Direct,🎯 国内网络
   - RULE-SET,lanCIDR,DIRECT
-  - RULE-SET,cnCIDR,🎯 国内网络
+  - RULE-SET,cnCIDR,🎯 国内网络,no-resolve
   - GEOIP,LAN,DIRECT
   - GEOIP,CN,🎯 国内网络,no-resolve
   - MATCH,🐟 其他网站
