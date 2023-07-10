@@ -303,7 +303,7 @@ rule-providers:
   Emby:
     <<: *rp
     behavior: classical
-    url: https://raw.fastgit.org/justdoiting/emby-rules/main/Emby.yaml
+    url: https://fastly.jsdelivr.net/gh/justdoiting/emby-rules@main/Emby.yaml
     path: ./providers/rule/Emby.yaml
   # GFW: # 黑名单规则方案中使用
   #   <<: *rp
