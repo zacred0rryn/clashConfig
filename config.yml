@@ -400,7 +400,7 @@ rule-providers:
     path: ./providers/rule/steam.yaml
   SteamCN:
     <<: *rp
-    url: https://rules.kr328.app/steam@cn.yaml
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/SteamCN/SteamCN.yaml
     path: ./providers/rule/steamCN.yaml
   telegramCIDR:
     <<: *rp
