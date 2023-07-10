@@ -217,7 +217,7 @@ proxy-providers:
     filter: 日|东京|韩|首尔|JP|Japan|Kor|Seo
   4.NA:
     <<: *pp
-    filter: 美|加州|洛|圣荷西|波特兰|加拿大|U.S.|States|Ame|Can
+    filter: 美|加州|洛|圣荷西|波特兰|加拿大|USA|U.S.|States|Ame|Can
   5.SG:
     <<: *pp
     filter: 新|狮城|SG|Singapore
