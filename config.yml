@@ -253,6 +253,11 @@ rule-providers:
     behavior: ipcidr
     url: https://fastly.jsdelivr.net/gh/zacred0rryn/clashConfig@main/providers/rule/akamCDN.yaml
     path: ./providers/rule/akamCDN.yaml
+  AliovCDN:
+    <<: *rp
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/zacred0rryn/clashConfig@main/providers/rule/aliovCDN.yaml
+    path: ./providers/rule/aliovCDN.yaml
   Apple:
     <<: *rp
     url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt
@@ -926,6 +931,7 @@ rules: # 对于基于IP-CIDR的规则，建议使用`no-resolve`防止DNS泄漏
   - RULE-SET,Google,📢 谷歌FCM
   - RULE-SET,Proxy,🚀 全局设置
   - RULE-SET,AkamizedCDN,🌏 国内媒体,no-resolve
+  - RULE-SET,AliovCDN,🌏 国内媒体,no-resolve
   - RULE-SET,CosovCDN,🌏 国内媒体,no-resolve
   - RULE-SET,MSFTJapanEast,🎯 国内网络,no-resolve
   - RULE-SET,Direct,🎯 国内网络
