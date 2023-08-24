@@ -1,4 +1,4 @@
-# 在199行粘贴订阅链接
+# 在200行粘贴Clash格式订阅链接
 mixed-port: 7890
 redir-port: 7892
 allow-lan: false
@@ -14,11 +14,12 @@ profile:
   store-fake-ip: true
 
 hosts:
+  'tsjp.zacred0rryn.top': 20.222.140.195
+  'upos-sz-mirrorcosov.bilivideo.com': 101.33.21.251
+  'upos-hz-mirrorakam.akamaized.net': 184.26.43.86
+  'upos-sz-mirroraliov.bilivideo.com': 163.181.129.235
   'services.googleapis.cn': 142.250.196.131
   'www.google.cn': 142.250.196.131
-  # 'chat.openai.com': 104.18.2.161
-  'upos-sz-mirrorcosov.bilivideo.com': 101.33.21.251
-  'upos-hz-mirrorakam.akamaized.net': 23.48.201.33
 
 dns:
   enable: true
@@ -28,11 +29,11 @@ dns:
   fake-ip-range: 198.18.0.1/16  # Fake IP 池 CIDR
   use-hosts: true  # 查询 hosts 并返回 IP 记录
   default-nameserver:
-    # - 119.29.29.29
+    - 8.8.8.8
     - 8.8.4.4
-    - 223.5.5.5
   nameserver:
-    - 114.114.114.114
+    - 1.1.1.1
+    # - 114.114.114.114
     # - tls://223.5.5.5:853
     - tls://1.12.12.12
     - tls://dns.rubyfish.cn:853
@@ -217,7 +218,7 @@ proxy-providers:
     filter: 日|东京|韩|首尔|JP|Japan|Kor|Seo
   4.NA:
     <<: *pp
-    filter: 美|加州|洛|圣荷西|波特兰|加拿大|USA|U.S.|States|Ame|Can
+    filter: 美|加州|洛|圣荷西|波特兰|加拿大|U.S.|States|Ame|Can
   5.SG:
     <<: *pp
     filter: 新|狮城|SG|Singapore
@@ -881,13 +882,15 @@ rules: # 对于基于IP-CIDR的规则，建议使用`no-resolve`防止DNS泄漏
   - RULE-SET,Private,DIRECT
   - DOMAIN-SUFFIX,qlogo.cn,🎯 国内网络
   - RULE-SET,Reject,🚫 请求拦截
-  - RULE-SET,adBlock,🚫 请求拦截
+  - RULE-SET,adBlock,🚫 请求拦截,no-resolve
   - DOMAIN-SUFFIX,miav-cse.avlyun.com,REJECT
   - DOMAIN-SUFFIX,a0.app.xiaomi.com,REJECT
   - DOMAIN-SUFFIX,miui-fxcse.avlyun.com,REJECT
   - DOMAIN-SUFFIX,api.installer.xiaomi.com,REJECT
   - IP-CIDR,157.148.47.204/32,REJECT,no-resolve
   - PROCESS-NAME,uu.exe,DIRECT
+  - PROCESS-NAME,leigod.exe,DIRECT
+  - PROCESS-NAME,leishenSdk.exe,DIRECT
   - DOMAIN,canyouseeme.org,🎯 国内网络
   - RULE-SET,SteamCN,🎯 国内网络
   - RULE-SET,Steam,🎮 Steam
@@ -926,8 +929,8 @@ rules: # 对于基于IP-CIDR的规则，建议使用`no-resolve`防止DNS泄漏
   - RULE-SET,CosovCDN,🌏 国内媒体,no-resolve
   - RULE-SET,MSFTJapanEast,🎯 国内网络,no-resolve
   - RULE-SET,Direct,🎯 国内网络
-  - RULE-SET,lanCIDR,DIRECT
+  - RULE-SET,lanCIDR,DIRECT,no-resolve
   - RULE-SET,cnCIDR,🎯 国内网络,no-resolve
-  - GEOIP,LAN,DIRECT
+  - GEOIP,LAN,DIRECT,no-resolve
   - GEOIP,CN,🎯 国内网络,no-resolve
   - MATCH,🐟 其他网站
