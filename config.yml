@@ -1,4 +1,4 @@
-# 在200行粘贴Clash格式订阅链接
+# 在182行粘贴Clash格式订阅链接
 mixed-port: 7890
 redir-port: 7892
 allow-lan: false
@@ -14,45 +14,27 @@ profile:
   store-fake-ip: true
 
 hosts:
-  'tsjp.zacred0rryn.top': 20.222.140.195
   'upos-sz-mirrorcosov.bilivideo.com': 101.33.21.251
   'upos-hz-mirrorakam.akamaized.net': 184.26.43.86
   'upos-sz-mirroraliov.bilivideo.com': 47.89.66.55
-  'services.googleapis.cn': 142.250.196.131
-  'www.google.cn': 142.250.196.131
 
 dns:
   enable: true
   ipv6: true
   listen: ":53"
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16  # Fake IP 池 CIDR
-  use-hosts: true  # 查询 hosts 并返回 IP 记录
+  fake-ip-range: 198.18.0.1/16
+  use-hosts: true
   default-nameserver:
-    - 8.8.8.8
-    - 8.8.4.4
+    - 223.5.5.5
   nameserver:
-    - 1.1.1.1
-    # - 114.114.114.114
-    # - tls://223.5.5.5:853
-    - tls://1.12.12.12
-    - tls://dns.rubyfish.cn:853
-    - tls://doh.pub:853
     - https://doh.pub/dns-query
-    - https://[2400:3200::1]/dns-query
-  fallback:  # 提供 fallback 时，如果GEOIP非 CN 中国时使用 fallback 解析
-    # - tls://8.8.8.8:853  # Google DNS over TLS 50ms
-    - tls://8.8.4.4:853  # cloudflare DNS over TLS 50ms
+  fallback:
     - https://1.0.0.1/dns-query
-    # - https://1.1.1.1/dns-query  # cloudflare DNS over HTTPS
-    # - https://dns.google/dns-query  # Google DNS over HTTPS
-    - https://public.dns.iij.jp/dns-query
-    - https://[2001:4860:4860::64]/dns-query
-    - https://[2606:4700:4700::1111]/dns-query
   fallback-filter:
     geoip: true
     geoip-code: CN
-    ipcidr:  # 被考虑为被污染的地址
+    ipcidr:
       - 0.0.0.0/8
       - 10.0.0.0/8
       - 100.64.0.0/10
@@ -237,6 +219,9 @@ proxy-providers:
   # 9-2.Disney:
   #   <<: *pp
   #   filter: Disney|迪士尼
+
+proxies: 
+  - {name: "EasyConnect", type: socks5, server: 172.17.225.171, port: 1080}
 
 rule-provider-common: &rp
   type: http
@@ -494,6 +479,15 @@ proxy-groups:
       - ⚖️ 负载均衡-散列
       - ⚖️ 负载均衡-轮询
       - 🚀 手动选择
+
+  - name: 🏢 学院网络
+    type: select
+    proxies:
+      - "EasyConnect"
+      - DIRECT
+
+  - name: 🎧 TS语音
+    <<: *gs
 
   - name: 📹 Youtube
     <<: *gs
@@ -885,6 +879,12 @@ rules: # 对于基于IP-CIDR的规则，建议使用`no-resolve`防止DNS泄漏
   - DOMAIN,yacd.haishan.me,DIRECT
   - RULE-SET,Applications,DIRECT
   - RULE-SET,Private,DIRECT
+  - DOMAIN,vpn.myuniv.edu.cn,DIRECT # 已脱敏
+  - DOMAIN,www.myuniv.edu.cn,DIRECT # 已脱敏
+  - IP-CIDR,10.166.18.0/24,🏢 学院网络 # 学校内网段
+  - IP-CIDR,10.168.102.0/24,🏢 学院网络 # 学校内网段
+  - IP-CIDR,10.168.103.0/24,🏢 学院网络 # 学校内网段
+  - DOMAIN-KEYWORD,myuniv,🏢 学院网络 # 已脱敏
   - DOMAIN-SUFFIX,qlogo.cn,🎯 国内网络
   - RULE-SET,Reject,🚫 请求拦截
   - RULE-SET,adBlock,🚫 请求拦截,no-resolve
@@ -893,6 +893,7 @@ rules: # 对于基于IP-CIDR的规则，建议使用`no-resolve`防止DNS泄漏
   - DOMAIN-SUFFIX,miui-fxcse.avlyun.com,REJECT
   - DOMAIN-SUFFIX,api.installer.xiaomi.com,REJECT
   - IP-CIDR,157.148.47.204/32,REJECT,no-resolve
+  - PROCESS-NAME,ts3client_win64.exe,🎧 TS语音
   - PROCESS-NAME,uu.exe,DIRECT
   - PROCESS-NAME,leigod.exe,DIRECT
   - PROCESS-NAME,leishenSdk.exe,DIRECT
@@ -934,9 +935,12 @@ rules: # 对于基于IP-CIDR的规则，建议使用`no-resolve`防止DNS泄漏
   - RULE-SET,AliovCDN,🌏 国内媒体,no-resolve
   - RULE-SET,CosovCDN,🌏 国内媒体,no-resolve
   - RULE-SET,MSFTJapanEast,🎯 国内网络,no-resolve
+  - IP-CIDR,54.248.0.0/17,🎧 TS语音,no-resolve
   - RULE-SET,Direct,🎯 国内网络
   - RULE-SET,lanCIDR,DIRECT,no-resolve
   - RULE-SET,cnCIDR,🎯 国内网络,no-resolve
   - GEOIP,LAN,DIRECT,no-resolve
   - GEOIP,CN,🎯 国内网络,no-resolve
+  - RULE-SET,Proxy,🚀 全局设置
   - MATCH,🐟 其他网站
+  
