@@ -1,6 +1,6 @@
 ## How to use
 * Clone this repo
-* Paste clash subscription link at column 200 in `config.yml`
+* Paste clash subscription link in `config.yml`
 * Check if the `Proxy Providers` and `Proxy Groups` are compatible with the proxies in the subscription
   * If not, annotate the unnecessary part or unannotate the useful part
 * Import the config file in CFW
