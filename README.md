@@ -1,13 +1,20 @@
-## How to use
-* Clone this repo
-* Paste clash subscription link in `config.yml`
-* Check if the `Proxy Providers` and `Proxy Groups` are compatible with the proxies in the subscription
-  * If not, annotate the unnecessary part or unannotate the useful part
-* Import the config file in CFW
+# DEPRECATED
+This Clash-related repo is no longer maintained since I've switched to [SagerNet/sing-box](https://github.com/SagerNet/sing-box).
 
-## Mixin
-* Use mixin to activate TUN mode since the DNS settings are written in `config.yml`
-* Mixin config is as follow: 
+---
+
+## ~How to use~
+* ~Clone this repo~
+* ~Paste clash subscription link in `config.yml`~
+* ~Check if the `Proxy Providers` and `Proxy Groups` are compatible with the proxies in the subscription~
+  * ~If not, annotate the unnecessary part or unannotate the useful part~
+* ~Import the config file in CFW~
+
+## ~Mixin~
+* ~Use mixin to activate TUN mode since the DNS settings are written in `config.yml`~
+* ~Mixin config is as follow:~
+<details>
+
 ```yml
 mixin:
     tun:
@@ -21,3 +28,5 @@ mixin:
         auto-detect-interface: true # conflict with `interface-name`
 # interface-name: eth0 # conflict with `tun.auto-detect-interface`
 ```
+
+</details>
